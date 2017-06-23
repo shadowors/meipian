@@ -1,0 +1,18 @@
+.item,.row-main,.warp,.info{
+    width:100%;
+}
+.item .bg a{
+    background-size:cover;
+}
+
+.right-user{
+    display: none;
+}
+body{
+}
+img{
+    width:100%;
+}
+view-tools{
+    
+}

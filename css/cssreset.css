@@ -1,0 +1,76 @@
+*{
+    margin:0;
+    padding:0
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+a:hover,a:link,a:visited,a:active{
+    color: #525252;
+    text-decoration: none;
+}
+p{
+    font-family: Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+p{
+    font-family: Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+
+}
+a {
+    user-select: none;
+    text-decoration: none;
+    color: #000;
+}
+em{
+    user-select:none;
+    font-style: normal;
+    line-height: 25px;
+    color: #aaaaaa;
+}
+
+.fl {
+    float: left;
+}
+
+.fl-r {
+    float: right;
+}
+
+.left {
+    padding-left: 20px;
+}
+.clearfix:after {
+    content: '.';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+input{
+    outline: 0px;
+}

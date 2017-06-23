@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--此页面作为编辑页面,文章编辑跳转到此页面-->
+    <meta charset="UTF-8">
+    <title>编辑器</title>
+    <link rel="stylesheet" type="text/css" href="../editor/css/editor.css">
+    <link rel="stylesheet" type="text/css" href="../css/cssreset.css">
+    <script src="../js/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/editor.css">
+    <link rel="stylesheet" type="text/css" href="../css/view.css">
+    <link rel="stylesheet" type="text/css" href="../css/css.css">
+</head>
+<body>
+
+
+<!--<div class="meipian-list">-->
+<!--<div class="mp-section">-->
+<!--<div class="">-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<div class="warp">
+    <div class="meipian-c">
+        <div class="usr-fuc">
+            <div class="usr-header">
+                <h3 class="h-title">点击设置标题</h3>
+                <em class="change-bg">更改封面</em>
+            </div>
+            <div class="section-container">
+                <div class="add_section">
+                    <div class="add_warp">
+                        <div id="add_text" class="add fl"><span></span></div>
+                        <div id="add_img" class="add fl"><span><input type="file" id="add_up" name="image"
+                                                                      accept="image/jpeg,.jpg,.jpeg,image/gif,.gif"/>
+                        </span></div>
+                        <!--<div id="add_video" class="add fl"><span></span></div>-->
+                    </div>
+                </div>
+                <div class="ctrl-ht" id="sortable" style="height: 610px;overflow: auto">
+                    <ul>
+                        <li class="ui-draggable ui-draggable-handle"
+                            style="width: 283px; height: 110px;border: 2px solid #ccc;">
+                            <div class="l-img">
+                                <img src="http://static2.ivwen.com/user/10610508/c786829fbfe00001ff98c57015a0e740.jpg?meipian-raw/bucket/ivwen/key/dXNlci8xMDYxMDUwOC9jNzg2ODI5ZmJmZTAwMDAxZmY5OGM1NzAxNWEwZTc0MC5qcGc=/sign/8e8e0711c019398a697f2d6a4e383493">
+                            </div>
+                            <div class="l-content">
+                                <p><br></p>
+                            </div>
+                            <div class="del_item" style=" cursor: pointer;"><a href="javascript:void(0);"></a></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="usr-foot">
+                <a href="##" class="btn btn-view">预览</a>
+            </div>
+        </div>
+    </div>
+    <div class="meipian-r">
+        <!--这里是外壳-->
+        <div class="text-editor" style="display: none;">
+            <div class="editor-header">
+                <div class="mbtn addImg">
+                    <a href="#">添加图片<input type="file" id="upload" name="image" onchange="getImgfile()"
+                                           accept="image/jpeg,.jpg,.jpeg"/>
+                    </a>
+                </div>
+                <h2>文章编辑</h2>
+                <div class="mbtn finish">完成</div>
+            </div>
+            <!--插入图片-->
+
+            <div id="editor_text" style="height: 93%;"></div>
+        </div>
+
+        <!--图片2号-->
+        <div class="Img-editor text-editor" style="display: none;">
+            <div class="editor-header">
+                <div class="mbtn addImg">
+                    <a href="#">更换图片<input type="file" id="upload2" name="image" onchange="changeImg()"
+                                           accept="image/jpeg,.jpg,.jpeg"/>
+                    </a>
+                </div>
+                <h2>图片编辑</h2>
+                <div class="mbtn finish">完成</div>
+            </div>
+            <!--插入图片-->
+            <div id="insertImg">
+            </div>
+            <div id="editor_img" style="height: 93%;"></div>
+        </div>
+
+        <!--视频3号-->
+        <div class="video-editor text-editor" style="display: none;">
+            <div class="editor-header">
+                <div class="mbtn addImg">
+                    <a href="#">更换图片<input type="file" id="upload3" name="image" onload="changeImg()"
+                                           accept="image/jpeg,.jpg,.jpeg,image/gif,.gif"/>
+                    </a>
+                </div>
+                <h2>视频上传</h2>
+                <div class="mbtn finish">完成</div>
+            </div>
+            <!--插入图片-->
+            <div id="insertVideo">
+                <iframe height=498 width=510 src='http://player.youku.com/embed/XMjc1OTYzMzQzMg==' frameborder=0
+                        allowfullscreen></iframe>
+            </div>
+            <div id="editor_video" style="height: 93%;"></div>
+        </div>
+
+        <!--预览4号-->
+        <div class="view_editor text-editor" style="display: block;">
+            <div class="view-head">
+                <h1 id="view_title"></h1>
+            </div>
+            <!--显示时间信息-->
+            <div class="view-meta">
+                <div class="info clearfix">
+                    <span class="user">
+                <a href="www.meipian.cn/c/100001"></a>
+            </span>
+                    <span>阅读0</span>
+                </div>
+            </div>
+            <div class="view_content">
+                <h1 class="c-title">我的标题</h1>
+                <div class="c-meta"></div>
+            </div>
+
+        </div>
+        <!--封面选择-->
+        <div class="Bg-editor text-editor" style="display: none;">
+            <div class="editor-header">
+                <div class="mbtn addImg">
+                    <a href="#">更换背景<input type="file" id="upload4" name="image" onchange="addImgfile()"
+                                           accept="image/jpeg,.jpg,.jpeg"/>
+                    </a>
+                </div>
+                <h2>更改封面</h2>
+                <div class="mbtn finish">完成</div>
+            </div>
+            <!--插入图片-->
+
+            <div id="ImgList" style="height: 93%;"></div>
+        </div>
+        <!--标题设置-->
+        <div class="title-editor text-editor" style="display: none;">
+            <div class="editor-header">
+                <h2>设置标题</h2>
+                <div class="mbtn finish">完成</div>
+            </div>
+            <div class="mp-content" id="content-text" style="top:60px;">
+                <textarea maxlength="50" style="top:0;bottom:0" placeholder="请输入内容..." class="shen"></textarea>
+            </div>
+
+        </div>
+        <!--外壳结束-->
+        <div class="usr-foot r-foot">
+            <div class="editor-header">
+                <!--删除这个文章返回到club-->
+                <div class="btn btn-del" id="del">删除</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--<div class="upload_img" style="display: none;">-->
+<!--<div class="" style="position: absolute;width: 100%;height: 100%;background: #000;opacity: 0.5;" ></div>-->
+<!--<div class="" style="position: absolute; width:300px;height: 70px;background: #cccccc;opacity: 1;"></div>-->
+<!--</div>-->
+
+<!--<style>-->
+
+<!--a{-->
+<!--display:block;-->
+<!--width:50px;-->
+<!--height:20px;-->
+<!--position: relative;-->
+<!--overflow: hidden;-->
+<!--}-->
+<!--</style>-->
+
+
+<!--备用-->
+<!--<a title="上传头像" href="${basePath }/user/my.do"-->
+<!--accesskey="q" class="avatar"><img-->
+<!--src="<c:choose><c:when test='${!empty user.head_url}'><c:if test="${not fn:startsWith(user.head_url, 'http://')}">${filePath }</c:if>${user.head_url}</c:when><c:otherwise>${filePath }/noavatar_middle.gif</c:otherwise></c:choose>">-->
+<!--</a>-->
+<script type="text/javascript" src="../editor/js/Editor.js"></script>
+<script type="text/javascript" src="../js/ddsort.js"></script>
+</body>
+<script>
+    var r_foot = elmClass('r-foot');
+    var view_meta = elmClass('view-meta');//
+    var view_title = document.getElementById('view_title');
+
+    var h_title = elmClass('h-title');//标题 user部分
+    var Imglist = document.getElementById('ImgList');
+    //    del_btn需要独立开来
+    var changeBg_btn = elmClass('change-bg');
+    var usr_header = elmClass('usr-header');
+    var selected, bg_selected,del;
+    selected = $('#sortable').children()[0].children[0];//初始化
+    //各个编辑器的容器用于隐藏
+    var text_editor = elmClass('text-editor');
+    var Img_editor = elmClass('Img-editor');
+    var video_editor = elmClass('video-editor');
+    var view_editor = elmClass('view_editor');
+    var Bg_editor = elmClass('Bg-editor');
+    var title_editor = elmClass('title-editor');
+    var editor_parent = elmClass('meipian-r');
+
+    //纯文本编辑器1号
+    var editor_text = new wangEditor('editor_text');
+    var editor_img = new wangEditor('editor_img');
+    var editor_video = new wangEditor('editor_video');
+
+    var insertImg = document.getElementById('insertImg');
+
+    //
+    var editorList = [editor_img, editor_text, editor_video];
+    var editorParent = [text_editor, Img_editor, video_editor, view_editor, Bg_editor,title_editor];
+
+    for (i = 0; i < editorList.length; i++) {
+        editorList[i].config.colors = {
+            '#880000': '暗红色',
+            '#800080': '紫色',
+            '#ff0000': '红色',
+            '#ff8a00': '橙色',
+            '#39b54a': '绿色',
+            '#167efb': '蓝色',
+            '紫色': '#b04fbb'
+        }
+        editorList[i].config.fontsizes = {
+            //格式：'value': 'title'
+            2: '小',
+            3: '中',
+            5: '大',
+            7: '特大'
+        };
+
+        //普通的自定义菜单
+        editorList[i].config.menus = [
+            'undo',
+            'redo',
+            '|',     // '|' 是菜单组的分割线
+            'bold',
+            'underline',
+            'italic',
+            'alignleft',
+            'aligncenter',
+            'alignright',
+            '|',
+            'eraser',
+            'fontsize',
+            'forecolor',
+            'link',
+
+        ];
+        editorList[i].config.pasteText = true;
+        editorList[i].create();
+        editorList[i].onchange = function () {
+            // 编辑区域内容变化时，实时打印出当前内容
+            var html = this.$txt.html();
+            if (selected) {
+                selected.children[1].innerHTML = html;
+            }
+        };
+    }
+    $('#sortable').DDSort({
+        target: 'li',
+        floatStyle: {
+            'border': '1px solid #ccc',
+            'background-color': '#fff',
+            'box-shadow': '10px 10px 20px 0 rgb(136, 164, 187)'
+        },
+        down: function () {
+            selected = this;
+            for (var i = 0; i < editorList.length; i++) {
+                editorList[i].$txt.html(selected.children[1].innerHTML)
+            }
+            var Img = document.createElement('img');
+            allnone()
+            upDel();
+            selected.style.border = '2px solid #ccc';
+            if ($(selected).children()[0].children[0])
+                if ($(selected).children()[0].children[0].src == '') {
+                    text_editor.style.display = 'block';
+                    Img_editor.style.display = 'none';
+                    console.log(insertImg.children);
+                    insertImg.children[0].src = '';
+                } else {
+                    text_editor.style.display = 'none';
+                    Img_editor.style.display = 'block';
+                    if(insertImg.children[0]){
+                        console.log(insertImg.children[0])
+                        insertImg.children[0].src = $(selected).children()[0].children[0].src;
+                    }else{
+                        Img.src=$(selected).children()[0].children[0].src;
+                        insertImg.appendChild(Img)
+                    }
+                }
+        },
+        up: function () {
+            selected.style.border = '2px solid #ccc'
+            selected = this;
+        },
+    })
+    //插入文章
+    $('#add_text').on('click', function () {
+        var li = returnLi()
+        $(selected).after(li);
+        selected = li;
+        console.log('不明'+_delImg)
+        DeImg()//更新删除图片按钮
+        upDel()//更新删除章节按钮
+        selected.style.border = '2px solid #ccc'
+        editor_text.$txt.html('<p><br></p>');
+    });
+    //插入图片
+    $('#add_up').on('change', function () {
+//           elmClass('upload_img').style.display='block'
+        var del_item = document.createElement('div');
+        del_item.className = 'del_item'; //del_item
+        var li = returnLi()
+
+        $(selected).after(li);
+        setTimeout(function () {
+        }, 100)
+        var docObj = document.getElementById('add_up');
+        var fileList = docObj.files;//获取到文件
+        var Img = document.createElement('img');
+        console.log(fileList);
+        insertImg.innerHTML = '';
+        for (var i = 0; i < fileList.length; i++) {
+            selected = li;
+            var src = fileList[i].name;
+            Img.src = window.URL.createObjectURL(docObj.files[i]);
+            insertImg.appendChild(Img)
+            $(selected).children()[0].children[0].src = Img.src
+        }
+        _delImg(insertImg);
+        DeImg()
+        docObj.value = '';
+        upDel()//更新删除按钮
+        allnone();
+        Img_editor.style.display = 'block';
+        selected.style.border = '2px solid #ccc';
+        editor_img.$txt.html('<p><br></p>');
+
+    })
+
+    function returnLi() {
+        var li = document.createElement('li');
+        li.className = 'ui-draggable ui-draggable-handle';
+        var div1 = document.createElement('div');
+        var div2 = document.createElement('div');
+        var div3 = document.createElement('div');
+        var img = document.createElement('img');
+        var p = document.createElement('p');
+        var br = document.createElement('br');
+        p.appendChild(br);
+        div1.className = 'l-img';
+        div2.className = 'l-content';
+        div3.className = 'del_item';
+        div1.appendChild(img);
+        div2.appendChild(p);
+        li.appendChild(div1);
+        li.appendChild(div2);
+        li.appendChild(div3);
+        return li;
+    }
+    function getImgfile(e) { //获取到文件目录
+        //初始化部分
+        insertImg.innerHTML = '';
+        allnone();
+        Img_editor.style.display = 'block';
+        var cachetxt = editor_text.$txt[0].innerHTML;
+        editor_text.$txt.html('<p><br></p>');
+        editor_img.$txt.html(cachetxt);
+//        _Img.src=''
+//        allnone()//将全部编   辑器状态初始化display:none
+        var docObj = document.getElementById('upload');
+        var fileList = docObj.files;//获取到文件
+        var Img = document.createElement('img');
+//        _Img.innerHTML=''
+        for (var i = 0; i < fileList.length; i++) {
+            var src = fileList[i].name;
+            Img.src = window.URL.createObjectURL(docObj.files[i]);
+            insertImg.appendChild(Img)
+            $(selected).children()[0].children[0].src = Img.src
+        }
+        setTimeout(function () { //因为被清除了找找在哪的问题
+            selected.children[1].innerHTML = cachetxt;
+            console.log(cachetxt)
+        }, 100);
+        _delImg(insertImg);
+        DeImg();
+        docObj.value = '';
+        upDel();
+    }
+    function addImgfile(){//修改封面图片
+        var src = bg_selected.getAttribute('data-link')
+        var docObj = document.getElementById('upload4');
+        var fileList = docObj.files;//获取到文件-->
+        var Img = document.createElement('img');
+        for (var i = 0; i < fileList.length; i++) {
+            var src = fileList[i].name;
+            Img.src = window.URL.createObjectURL(docObj.files[i]);
+        }
+        usr_header.style.backgroundImage='url('+Img.src+')';
+    }
+
+    function changeImg(e) { //获取到文件目录
+        console.log('Imgchanging……');
+        var docObj = document.getElementById('upload2');
+        var fileList = docObj.files;//获取到文件-->
+        Img_editor.style.display = 'block';
+        insertImg.innerHTML = ''; //初始化;-->
+        var Img = document.createElement('img');
+        for (var i = 0; i < fileList.length; i++) {
+            var src = fileList[i].name;
+            Img.src = window.URL.createObjectURL(docObj.files[i]);
+            $(selected).children()[0].children[0].src = window.URL.createObjectURL(docObj.files[i]);//改变item中的图片
+        }
+        insertImg.appendChild(Img);
+        _delImg(insertImg);
+        docObj.value = '';
+        DeImg()
+        upDel()
+
+    }
+
+    function allnone() {
+        editor_parent.style.backgroundColor = ''
+        for (var i = 0; i < editorParent.length; i++) {
+            editorParent[i].style.display = 'none';
+            r_foot.style.display='none';
+        }
+    }
+    function elmClass(str) {
+        if (document.getElementsByClassName) {
+            return document.getElementsByClassName(str)[0];
+        } else {
+            alert('你的浏览器Out了,抓紧升一升更上新一代')
+            document.body.innerHTML = "<a href='http://down.360safe.com/cse/360cse_8.7.0.306.exe' style='position: absolute;left: 50%;top: 50%;font-size: 30px;transform:translateX(-50%) translateY(-50%);color: #000;'>点击下载360浏览器</a>"
+        }
+    }
+
+    function upDel() { //为删除按钮更新列表
+        del = $('.del_item');
+        var drag = $('.ui-draggable');
+        var List = {img: [], txt: [], src: []};
+        for (var i = 0; i < del.length; i++) {
+            del[i].removeEventListener('click', clearaLL)
+            del[i].addEventListener('click', clearaLL)
+            drag[i].style.border = '2px solid rgba(0,0,0,0.1)';
+//            if(drag[i].children[0].children[0].src){
+            console.log('ok')
+            List.img.push(drag[i].children[0].innerHTML);
+            List.src.push(drag[i].children[0].children[0].src);
+//                List.txt.push(drag[i])
+//            }
+            if (drag[i].children[1].innerHTML) {
+                List.txt.push(drag[i].children[1].innerHTML)
+            }
+        }
+        return List;
+    }
+
+
+    function clearaLL() { //删除一个图文版块
+        var pre = $(selected).prev()[0];
+        var next = $(selected).next()[0];
+        if (del.length == 1) {
+            var a = alert('请保留一个元素')
+            if (true) {
+
+            }
+        } else {
+            var b = confirm('是否删除');
+            if (b) {
+                $(selected).remove();
+                upDel();
+//                for(var i=0;i<editorList.length;i++){ //此时的selected还保留原来,所以其编辑器还可以对上面的Item进行监听
+//                    editorList[i].$txt.html('<p><br></p>')
+//                }
+            }
+        }
+        del = $('.del_item')
+        console.log('剩余' + del.length)
+        setTimeout(function () { //不知道为什么原因 进行清除内容的时候会和selected.remove()一起被执行 可能是因为清除监听的缘故
+            if (pre) {
+                selected = pre;
+            } else {
+                selected = next;
+            }
+            selected.style.border = '2px solid #ccc'
+            for (var i = 0; i < editorList.length; i++) {
+                editorList[i].$txt.html(selected.children[1].innerHTML)
+            }
+        }, 100)
+    }
+    upDel();
+
+    function DeImg() {//删除图片操作
+        var btn = elmClass('del-btn');
+        btn.addEventListener('click', function () {
+            var cache = editor_img.$txt[0].innerHTML;
+            console.log(cache);
+            insertImg.children[0].src = '';
+            text_editor.style.display = 'block';
+            Img_editor.style.display = 'none';
+            console.log($(selected).children()[0].innerHTML = '<img>')
+            editor_text.$txt.html(cache)
+
+//            selected.children[1].innerHTML=html;
+//            selected.
+        })
+    }
+    //    var _content = $('.ui-draggable')
+
+
+    function randomback(i) {//i传入数量
+        var a = parseInt(Math.random() * i);
+        console.log(a)
+    }
+
+    var all;
+    var oTop = 120;//上面的高度
+    var ofoot = 46;
+    var tool = 60;
+    $('.ui-draggable')[0].style.border = '2px solid #ccc';
+    setInterval(function () {
+        var warp = elmClass('ctrl-ht')
+        all = $('.meipian-c').height();
+        var result = all - oTop - ofoot - tool;
+        warp.style.height = result + 'px';
+    }, 1500);
+
+    $('.btn-view').on('click',viewer);
+    function viewer() {//点击预览按钮
+        allnone();
+        r_foot.style.display='block';
+
+        var _num=0;      //默认阅读人数0
+        var _time =formatDate(new Date(),"yyyy-MM-dd HH:mm");
+        var cache = upDel();
+        console.log(cache);
+        editor_parent.style.backgroundColor = 'white';
+
+        view_meta.innerHTML=''
+        console.log(h_title.innerText)
+        $('.view_content')[0].innerHTML = '';
+
+        //        预览的标题
+        if(h_title.innerText=='点击设置标题'){
+            view_title.innerText='我的文章';
+        }else{
+            view_title.innerText=h_title.innerText
+        }
+
+//        预览的时间view_meta
+        var info = document.createElement('div');//
+        var time = document.createElement('span');
+        var user_link = document.createElement('span');
+        var read_num = document.createElement('span');
+        read_num.innerText='阅读'+_num;
+        time.innerText=_time;
+        info.appendChild(time);
+        info.appendChild(user_link);
+        info.appendChild(read_num);
+        info.className='info clearfix';
+
+
+        view_meta.appendChild(info);
+        for (var i = 0; i < cache.img.length; i++) {
+            var view = document.createElement('div');
+            view.className = 'section';
+            view.innerHTML = cache.txt[i] + cache.img[i];
+            $('.view_content').append(view);
+            view_editor.style.display = 'block';
+        }
+    }
+    $('.h-title').on('click',function(){
+        allnone();
+        title_editor.style.display='block';
+    })
+    $('.shen').on('input',function(){
+        var value = this.value;
+        console.log(value.indexOf('↵'))
+        console.log(value)
+        h_title.innerText=value;
+    })
+    changeBg_btn.addEventListener('click', function () {
+        var _Imglist = [];
+        var cache = upDel();
+        for (var i = 0; i < cache.src.length; i++) {//
+            if (cache.src[i] != "") {
+                _Imglist.push(cache.src[i])
+            }
+        }
+        if ($('#ImgList').children().length >= 20) {
+            //初始化
+            allnone();
+            Bg_editor.style.display = 'block'//将背景编辑器显示
+        } else {
+            //初始化
+            Imglist.innerHTML = ''
+            allnone();
+            Bg_editor.style.display = 'block'//将背景编辑器显示
+            for (var i = 0; i < _Imglist.length; i++) {
+                var div = document.createElement('div');
+                var img = document.createElement('img');
+                div.className = 'Img-item';
+                if(i==0){ //判断循环第一个进行初始化选择
+                    div.className='Img-item sel';
+                    bg_selected = div;
+                }
+                div.setAttribute('data-link', _Imglist[i])
+                img.src = _Imglist[i];
+                div.appendChild(img)
+
+                $('#ImgList').append(div);
+                div.addEventListener('click', function () {
+                    reClass($('#ImgList'));
+                    var attr = this.getAttribute('data-link');
+                    usr_header.style.backgroundImage = 'url(' + attr + ')';
+                    this.classList.add('sel');
+                })
+            }
+        }
+    })
+    //初始化 将第一个item中的图片变成文章背景
+    var cache = upDel();
+    usr_header.style.backgroundImage='url('+cache.src[0]+')';
+    viewer()//初始化默认显示view
+
+
+
+    function formatDate(date, pattern) { //时间格式化处理
+        function padding(number) {
+            return number < 10 ? '0' + number : '' + number
+        }
+        var yyyy = date.getFullYear();
+        var MM = padding(date.getMonth() + 1);
+        var dd = padding(date.getDate());
+        var HH = padding(date.getHours());
+        var mm = padding(date.getMinutes());
+        var ss = padding(date.getSeconds());
+        pattern = pattern.replace(/yyyy/, yyyy);
+        pattern = pattern.replace(/MM/, MM);
+        pattern = pattern.replace(/dd/, dd);
+        pattern = pattern.replace(/HH/, HH);
+        pattern = pattern.replace(/mm/, mm);
+        pattern = pattern.replace(/ss/, ss);
+        return pattern;
+    }
+    function reClass(parent){ //清除父元素下子全部元素的指定class;
+        var childs = parent.children();
+        for(var i=0;i<childs.length;i++){
+            childs[i].classList.remove('sel')
+        }
+    }
+
+</script>
+
+</html>

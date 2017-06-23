@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="editor/css/editor.css">
+    <link rel="stylesheet" type="text/css" href="css/cssreset.css">
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/editor.css">
+    <link rel="stylesheet" type="text/css" href="css/view.css">
+    <link rel="stylesheet" type="text/css" href="css/css.css">
+</head>
+<body>
+<div class="warp">
+    <div class="meipian-c">
+        <div class="usr-fuc">
+            <div class="usr-header">
+                <h3 class="h-title">点击设置标题</h3>
+                <em class="change-bg">更改封面</em>
+            </div>
+            <div class="section-container">
+                <div class="add_section">
+                    <div class="add_warp">
+                        <div id="add_text" class="add fl"><span></span></div>
+                        <div id="add_img" class="add fl"><span><input type="file" id="add_up" name="image"
+                                                                      accept="image/jpeg,.jpg,.jpeg,image/png,.png"/>
+                        </span></div>
+                        <!--<div id="add_video" class="add fl"><span></span></div>-->
+                    </div>
+                </div>
+                <div class="ctrl-ht" id="sortable" style="height: 610px;overflow: auto">
+                    <ul>
+                        <li class="ui-draggable ui-draggable-handle"
+                            style="width: 283px; height: 110px;border: 2px solid #ccc;">
+                            <div class="l-img">
+                                <img src="http://static2.ivwen.com/user/10610508/c786829fbfe00001ff98c57015a0e740.jpg?meipian-raw/bucket/ivwen/key/dXNlci8xMDYxMDUwOC9jNzg2ODI5ZmJmZTAwMDAxZmY5OGM1NzAxNWEwZTc0MC5qcGc=/sign/8e8e0711c019398a697f2d6a4e383493">
+                            </div>
+                            <div class="l-content">
+                                <p><br></p>
+                            </div>
+                            <div class="del_item" style=" cursor: pointer;"><a href="javascript:void(0);"></a></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="usr-foot">
+                <a href="##" class="btn btn-view">预览</a>
+            </div>
+        </div>
+    </div>
+    <div class="meipian-r">
+        <!--这里是外壳-->
+        <div class="text-editor" style="display: none;">
+            <div class="editor-header">
+                <div class="mbtn addImg">
+                    <a href="#">添加图片<input type="file" id="upload" name="image"
+                                           accept="image/jpeg,.jpg,.jpeg"/>
+                    </a>
+                </div>
+                <h2>文章编辑</h2>
+                <div class="mbtn finish">完成</div>
+            </div>
+            <!--插入图片-->
+
+            <div id="editor_text" style="height: 93%;"></div>
+        </div>
+
+        <!--图片2号-->
+        <div class="Img-editor text-editor" style="display: none;">
+            <div class="editor-header">
+                <div class="mbtn addImg">
+                    <a href="#">更换图片<input type="file" id="upload2" name="image"
+                                           accept="image/jpeg,.jpg,.jpeg"/>
+                    </a>
+                </div>
+                <h2>图片编辑</h2>
+                <div class="mbtn finish">完成</div>
+            </div>
+            <!--插入图片-->
+            <div id="insertImg">
+                <img>
+            </div>
+            <div id="editor_img" style="height: 93%;"></div>
+        </div>
+
+        <!--视频3号-->
+        <div class="video-editor text-editor" style="display: none;">
+            <div class="editor-header">
+                <div class="mbtn addImg">
+                    <a href="#">更换图片<input type="file" id="upload3" name="image" onload="changeImg()"
+                                           accept="image/jpeg,.jpg,.jpeg,image/gif,.gif"/>
+                    </a>
+                </div>
+                <h2>视频上传</h2>
+                <div class="mbtn finish">完成</div>
+            </div>
+            <!--插入图片-->
+            <div id="insertVideo">
+                <iframe height=498 width=510 src='http://player.youku.com/embed/XMjc1OTYzMzQzMg==' frameborder=0
+                        allowfullscreen></iframe>
+            </div>
+            <div id="editor_video" style="height: 93%;"></div>
+        </div>
+
+        <!--预览4号-->
+        <div class="view_editor text-editor" style="display: block;">
+            <div class="view-head">
+                <h1 id="view_title"></h1>
+            </div>
+            <!--显示时间信息-->
+            <div class="view-meta">
+                <div class="info clearfix">
+                    <span class="user">
+                <a href="www.meipian.cn/c/100001"></a>
+            </span>
+                    <span>阅读0</span>
+                </div>
+            </div>
+            <div class="view_content">
+                <h1 class="c-title">我的标题</h1>
+                <div class="c-meta"></div>
+            </div>
+
+        </div>
+        <!--封面选择-->
+        <div class="Bg-editor text-editor" style="display: none;">
+            <div class="editor-header">
+                <div class="mbtn addImg">
+                    <a href="#">更换背景<input type="file" id="upload4" name="image"
+                                           accept="image/jpeg,.jpg,.jpeg"/>
+                    </a>
+                </div>
+                <h2>更改封面</h2>
+                <div class="mbtn finish">完成</div>
+            </div>
+            <!--插入图片-->
+
+            <div id="BgList" style="height: 93%;"></div>
+        </div>
+        <!--标题设置-->
+        <div class="title-editor text-editor" style="display: none;">
+            <div class="editor-header">
+                <h2>设置标题</h2>
+                <div class="mbtn finish">完成</div>
+            </div>
+            <div class="mp-content" id="content-text" style="top:60px;">
+                <textarea maxlength="50" style="top:0;bottom:0" placeholder="请输入内容..." class="editorHead"></textarea>
+            </div>
+
+        </div>
+        <!--外壳结束-->
+        <div class="usr-foot r-foot">
+            <div class="editor-header">
+                <!--删除这个文章返回到club-->
+                <div class="btn btn-del" id="del">删除</div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="editor/js/Editor.js"></script>
+    <script type="text/javascript" src="js/ddsort.js"></script>
+</div>
+<script src="js/proto.js"></script>
+<script>
+     new oneFunc();
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+/*头部标题*/
+.view-head {
+    font-size: 24px;
+    font-weight: 400;
+    border-bottom: 1px solid #e7e7eb;
+    padding: 30px 0 10px 0;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.view-head h1 {
+    font-weight: 400;
+    font-size: 24px;
+}
+/*头部*/
+.view-meta {
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 10px;
+    vertical-align: middle;
+}
+
+.view-meta span {
+    margin-right: 8px;
+    color: #8c8c8c;
+}
+
+.view-meta a {
+    color: #607fa6;
+}

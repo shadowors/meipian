@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40.2 (33826) - http://www.bohemiancoding.com/sketch -->
+    <title>查看</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M10,13.3333333 C5.57888889,13.3333333 2.17388889,10.2327778 0,6.66666667 C2.17388889,3.10055556 5.57888889,0 10,0 C14.4211111,0 17.8261111,3.10055556 20,6.66666667 C17.8261111,10.2327778 14.4211111,13.3333333 10,13.3333333 L10,13.3333333 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="20" height="13.3333333" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="文章栏" transform="translate(-438.000000, -76.000000)" stroke="#AAAAAA">
+            <g id="Group">
+                <g id="Group-2" transform="translate(198.000000, 76.000000)">
+                    <g id="阅读" transform="translate(242.000000, 6.000000)">
+                        <path d="M10,0.9 C7.48666667,0.9 5.44944444,2.98444444 5.44944444,5.55555556 C5.44944444,8.12666667 7.48666667,10.2111111 10,10.2111111 C12.5133333,10.2111111 14.5505556,8.12666667 14.5505556,5.55555556 C14.5505556,2.98444444 12.5133333,0.9 10,0.9 L10,0.9 Z" id="_--2-path"></path>
+                        <use id="_--2-path" mask="url(#mask-2)" stroke-width="2" xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

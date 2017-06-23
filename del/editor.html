@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../css/cssreset.css">
+
+    <link rel="stylesheet" type="text/css" href="../editor/css/editor.css">
+    <script src="../js/jquery-2.2.4.min.js"></script>
+    <style>
+
+        body {
+            /*position: absolute;*/
+            background: url("../../../Documents/select/打包/images/background1.jpg") no-repeat;
+            background-size: 1920px 1080px;
+            /*overflow: hidden;*/
+            /*min-height: 580px;*/
+            /*min-width: 1100px;*/
+            width: 100%;
+            height: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .mbtn {
+            height: 30px;
+            line-height: 1;
+            cursor: pointer;
+            color: #525252;
+            text-align: center;
+            font-size: 14px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, .3);
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        #upload, #upload2, #upload3, #add_up {
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 73px;
+            height: 30px;
+        }
+
+        .warp {
+            position: absolute;
+            width: 1024px;
+            min-height: 512px;
+            top: 20px;
+            left: 0;
+            right: 0;
+            bottom: 40px;
+            margin: auto;
+            padding: 10px 30px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .meipian-r, .meipian-c {
+            float: left;
+            width: 572px;
+            margin-left: 30px;
+            height: 100%;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, .5);
+            padding: 15px 20px 20px;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, .75);
+        }
+
+        .meipian-c {
+            padding: 0;
+        }
+
+        .meipian-r {
+        }
+
+        .usr-foot {
+            text-align: center;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 45px;
+            background: #288ad8;
+            z-index: 0;
+        }
+
+        .usr-foot .btn-view {
+            cursor: pointer;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 100px;
+            height: 32px;
+            line-height: 32px;
+            border-radius: 8px;
+            color: #288ad8;
+            background: floralwhite;
+        }
+
+        .warp {
+            /*left:80%;*/
+            animation: 1s animate both;
+        }
+
+        /*@keyframes animate {*/
+        /*from{left:80%}*/
+        /*to{left:50%;transform:translateX(-50%)}*/
+        /*}*/
+        /*@keyframes opacity {*/
+        /*form{opacity:0}*/
+        /*to{opacity:1;d}*/
+        /*}*/
+
+        .meipian-c {
+            width: 325px;
+        }
+
+        .text-editor {
+            position: relative;
+            width: 100%;
+            height: 95%;
+        }
+
+        .text-editor h2 {
+            text-align: center;
+            user-select: none;
+        }
+
+        .text-editor .addImg, .text-editor .finish {
+            position: absolute;
+        }
+
+        .text-editor .editor-header {
+            position: relative;
+            width: 100%;
+            height: 30px;
+        }
+
+        .text-editor .finish {
+            right: 0;
+            top: 0;
+        }
+
+        .text-editor .editor-con {
+            position: absolute;
+            top: 60px;
+            left: 20px;
+            bottom: 20px;
+            right: 20px;
+            border: 1px solid rgba(0, 0, 0, .25);
+            border-radius: 8px;
+        }
+
+        .text-editor .tools {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 46px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(0, 0, 0, .25);
+        }
+
+        .text-editor .textarea {
+            position: absolute;
+            top: 46px;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            outline: 0;
+            overflow: auto;
+            background: rgba(0, 0, 0, .1);
+        }
+
+        /*二号编辑器图片*/
+        .Img-editor .wangEditor-container, .video-editor .wangEditor-container {
+            top: 310px;
+            z-index: 0;
+        }
+
+        #insertImg {
+            position: relative;
+        }
+
+        #insertImg .del-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 0;
+            width: 24px;
+            height: 24px;
+            background: url("../../../Documents/select/打包/images/lose.png") no-repeat;
+            background-size: 100%;
+        }
+
+        #insertImg, #insertVideo {
+            width: 100%;
+            height: 255px !important;
+            margin: 15px auto;
+            text-align: center;
+        }
+
+        #insertImg img {
+            max-width: 100%;
+            height: 255px;
+        }
+
+        #insertVideo iframe {
+            width: 400px !important;
+            height: 255px !important;
+        }
+
+        /*头部*/
+        .usr-header {
+            width: 100%;
+            height: 119px;
+            background: darkred;
+        }
+
+        .usr-header {
+
+        }
+
+        /*各个文章容器*/
+        #sortable {
+            min-height: 200px;
+        }
+
+        #sortable .l-img, #sortable .l-content {
+            float: left;
+            margin-top: 20px;
+            margin-left: 20px;
+            word-break: break-all;
+        }
+
+        #sortable .l-img img {
+            width: 76px;
+            height: 76px;
+            background: url("../../../Documents/select/打包/images/item-bg.png") no-repeat;
+            background-size: 100%;
+        }
+
+        #sortable .l-content {
+            max-width: 150px;
+            width: 100%;
+            height: 80px;
+            overflow: hidden;
+        }
+
+        #sortable .l-content p {
+            cursor: default;
+        }
+
+        #sortable .l-content font {
+            font-size: 100%;
+        }
+
+        #sortable .del_item {
+            cursor: pointer;
+            width: 20px;
+            height: 23px;
+            background: url("../../../Documents/select/打包/images/close.png") no-repeat;
+            background-size: 80%;
+        }
+
+        #sortable li {
+            list-style: none;
+            z-index:99;
+            user-select: none;
+        }
+
+        .section-container .ui-draggable.ui-draggable-handle {
+            width: 283px;
+            margin-top: 20px;
+            margin-left: 20px;
+            height: 110px;
+            border-radius: 11px;
+            background: rgba(255, 255, 255, .8);
+        }
+
+        .section-container .add_section {
+            margin: 10px auto;
+            width: 150px;
+            height: 30px;
+            background: rgba(0, 0, 0, .3);
+            border: 1px solid rgba(0, 0, 0, .1);
+            border-radius: 50px;
+
+        }
+
+        .add_section #add_text {
+        }
+
+        .add_section .add {
+            text-align: center;
+            width: 40px;
+            height: 32px;
+        }
+
+        .add_section span {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            display: block;
+            margin: 0 auto;
+            width: 24px;
+            height: 16px;
+        }
+
+        #add_text span {
+            background: url("../../../Documents/select/打包/images/text.png") no-repeat;
+        }
+
+        #add_img span {
+            background: url('../../../Documents/select/打包/images/images.png') no-repeat;
+        }
+
+        #add_video span {
+            background: url('../../../Documents/select/打包/images/video.png') no-repeat;
+        }
+
+        /*中间*/
+        .add_warp {
+            width: 120px;
+            margin: 0 auto;
+        }
+
+        @keyframes radius {
+            from {
+                border-radius: 100%
+            }
+            to {
+                border-radius: 1px
+            }
+        }
+
+        .upload_img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        /*meipian-list*/
+        .meipian-list {
+            position: absolute;
+            top: 20px;
+            left: 20%;
+            background: #cccccc;
+            width: 500px;
+            min-height: 512px;
+        }
+
+        #sortable::-webkit-scrollbar-thumb {
+            background-color: #555;
+            border-radius: 10px;
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
+        }
+
+        #sortable::-webkit-scrollbar {
+            width: 8px;
+            background-color: #f5f5f5
+        }
+
+        #sortable::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            background-color: #F5F5F5;
+        }
+        .view_editor{
+            overflow: auto;
+            box-sizing: border-box;
+        }
+        .view_editor.text-editor img{
+            width: 100%;
+            max-width:512px;
+        }
+        .view_editor::-webkit-scrollbar-thumb {
+            background-color: #555;
+            border-radius: 10px;
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
+        }
+        .view_editor::-webkit-scrollbar {
+            width: 8px;
+            background-color: #f5f5f5
+        }
+        .view_content{
+            width:100%;
+            height:100%;
+            overflow: auto;
+            background: #fff;
+        }
+        .view_content img{
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+<!--<div class="meipian-list">-->
+<!--<div class="mp-section">-->
+<!--<div class="">-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<div class="warp">
+
+    <div class="meipian-c">
+        <div class="usr-fuc">
+            <div class="usr-header">
+                 <h4>我的十分大按时</h4>
+            </div>
+            <div class="section-container">
+                <div class="add_section">
+                    <div class="add_warp">
+                        <div id="add_text" class="add fl"><span></span></div>
+                        <div id="add_img" class="add fl"><span><input type="file" id="add_up" name="image" accept="image/jpeg,.jpg,.jpeg,image/gif,.gif"/>
+                        </span></div>
+                        <div id="add_video" class="add fl"><span></span></div>
+                    </div>
+                </div>
+                <div class="ctrl-ht" id="sortable" style="height: 610px;overflow: auto">
+                    <ul>
+                        <li class="ui-draggable ui-draggable-handle"
+                            style="width: 283px; height: 110px;border: 2px solid #ccc;">
+                            <div class="l-img">
+                                <img>
+                            </div>
+                            <div class="l-content">
+                                <p><br></p>
+                            </div>
+                            <div class="del_item" style=" cursor: pointer;"><a href="javascript:void(0);"></a></div>
+                        </li>
+                        <li class="ui-draggable ui-draggable-handle" style="width: 283px; height: 110px;">
+                            <div class="l-img">
+                                <img>
+                            </div>
+                            <div class="l-content">
+                                <p><br></p>
+                            </div>
+                            <div class="del_item" style=" cursor: pointer;"><a href="javascript:void(0);"></a></div>
+                        </li>
+                        <li class="ui-draggable ui-draggable-handle" style="width: 283px; height: 110px;">
+                            <div class="l-img">
+                                <img>
+                            </div>
+                            <div class="l-content">
+                                <p><br></p>
+                            </div>
+                            <div class="del_item" style=" cursor: pointer;"><a href="javascript:void(0);"></a></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="usr-foot">
+                <a href="##" class="btn-view">预览</a>
+            </div>
+        </div>
+    </div>
+    <div class="meipian-r">
+        <!--这里是外壳-->
+        <div class="text-editor" style="display: block;">
+            <div class="editor-header">
+                <div class="mbtn addImg">
+                    <a href="#">添加图片<input type="file" id="upload" name="image" onchange="getImgfile()"
+                                           accept="image/jpeg,.jpg,.jpeg,image/gif,.gif"/>
+                    </a>
+                </div>
+                <h2>文章编辑</h2>
+                <div class="mbtn finish">完成</div>
+            </div>
+            <!--插入图片-->
+
+            <div id="editor_text" style="height: 93%;"></div>
+        </div>
+
+        <!--图片2号-->
+        <div class="Img-editor text-editor" style="display: none;">
+            <div class="editor-header">
+                <div class="mbtn addImg">
+                    <a href="#">更换图片<input type="file" id="upload2" name="image" onchange="changeImg()"
+                                           accept="image/jpeg,.jpg,.jpeg,image/gif,.gif"/>
+                    </a>
+                </div>
+                <h2>图片编辑</h2>
+                <div class="mbtn finish">完成</div>
+            </div>
+            <!--插入图片-->
+            <div id="insertImg">
+                <div class="remove"></div>
+            </div>
+            <div id="editor_img" style="height: 93%;"></div>
+        </div>
+
+        <!--视频3号-->
+        <div class="video-editor text-editor" style="display: none;">
+            <div class="editor-header">
+                <div class="mbtn addImg">
+                    <a href="#">更换图片<input type="file" id="upload3" name="image" onload="changeImg()"
+                                           accept="image/jpeg,.jpg,.jpeg,image/gif,.gif"/>
+                    </a>
+                </div>
+                <h2>视频上传</h2>
+                <div class="mbtn finish">完成</div>
+            </div>
+            <!--插入图片-->
+            <div id="insertVideo">
+                <iframe height=498 width=510 src='http://player.youku.com/embed/XMjc1OTYzMzQzMg==' frameborder=0
+                        allowfullscreen></iframe>
+            </div>
+            <div id="editor_video" style="height: 93%;"></div>
+        </div>
+
+        <!--预览4号：写入格式:<div></div> 可以对view_editor进行检测个数,然后生成对应的列并且写入里面的内容-->
+        <div class="view_editor text-editor" style="display: none;">
+            <div class="view_content">
+                <h1 class="c-title">我的标题</h1>
+                <div class="c-meta"></div>
+            </div>
+        </div>
+
+
+        <!--外壳结束-->
+        <div class="usr-foot">
+            <div></div>
+        </div>
+    </div>
+
+</div>
+<!--<div class="upload_img" style="display: none;">-->
+<!--<div class="" style="position: absolute;width: 100%;height: 100%;background: #000;opacity: 0.5;" ></div>-->
+<!--<div class="" style="position: absolute; width:300px;height: 70px;background: #cccccc;opacity: 1;"></div>-->
+<!--</div>-->
+
+<!--<style>-->
+
+<!--a{-->
+<!--display:block;-->
+<!--width:50px;-->
+<!--height:20px;-->
+<!--position: relative;-->
+<!--overflow: hidden;-->
+<!--}-->
+<!--</style>-->
+
+
+<!--备用-->
+<!--<a title="上传头像" href="${basePath }/user/my.do"-->
+<!--accesskey="q" class="avataimages<img-->
+<!--src="<c:choose><c:when test='${!empty user.head_url}'><c:if test="${not fn:startsWith(user.head_url, 'http://')}">${filePath }</c:if>${user.head_url}</c:when><c:otherwise>${filePath }/noavatar_middle.gif</c:otherwise></c:choose>">-->
+<!--</a>-->
+<script type="text/javascript" src="../../../Documents/select/打包/editor/js/Editor.js"></script>
+<script type="text/javascript" src="../../../Documents/select/打包/js/ddsort.js"></script>
+</body>
+<script>
+
+    //    del_btn需要独立开来
+
+
+    var selected, del;
+    selected = $('#sortable').children()[0].children[0];//初始化
+    //各个编辑器的容器用于隐藏
+    var text_editor = elmClass('text-editor');
+    var Img_editor = elmClass('Img-editor');
+    var video_editor = elmClass('video-editor');
+    var view_editor = elmClass('view_editor');
+
+    //纯文本编辑器1号
+    var editor_text = new wangEditor('editor_text');
+    var editor_img = new wangEditor('editor_img');
+    var editor_video = new wangEditor('editor_video');
+
+    var insertImg = document.getElementById('insertImg');
+
+    //
+    var editorList = [editor_img, editor_text, editor_video];
+    var editorParent = [text_editor, Img_editor, video_editor];
+
+    for (i = 0; i < editorList.length; i++) {
+        editorList[i].config.colors = {
+            '#880000': '暗红色',
+            '#800080': '紫色',
+            '#ff0000': '红色',
+            '#ed2308': '橙色',
+            '#39b54a': '绿色',
+            '#167efb': '蓝色',
+            '紫色': '#b04fbb'
+        }
+        editorList[i].config.fontsizes = {
+            //格式：'value': 'title'
+            2: '小',
+            3: '中',
+            5: '大',
+            7: '特大'
+        };
+
+        //普通的自定义菜单
+        editorList[i].config.menus = [
+            'undo',
+            'redo',
+            '|',     // '|' 是菜单组的分割线
+            'bold',
+            'underline',
+            'italic',
+            'alignleft',
+            'aligncenter',
+            'alignright',
+            '|',
+            'eraser',
+            'fontsize',
+            'forecolor',
+            'link',
+
+        ];
+        editorList[i].config.pasteText = true;
+        editorList[i].create();
+        editorList[i].onchange = function () {
+            // 编辑区域内容变化时，实时打印出当前内容
+            var html = this.$txt.html();
+            if (selected) {
+                selected.children[1].innerHTML = html;
+            }
+        };
+    }
+    $('#sortable').DDSort({
+        target: 'li',
+        floatStyle: {
+            'border': '1px solid #ccc',
+            'background-color': '#fff',
+            'box-shadow': '10px 10px 20px 0 rgb(136, 164, 187)'
+        },
+        down: function () {
+            selected = this;
+            for (var i = 0; i < editorList.length; i++) {
+                editorList[i].$txt.html(selected.children[1].innerHTML)
+            }
+            view_editor.style.display='none'
+            upDel();
+            selected.style.border = '2px solid #ccc';
+            if ($(selected).children()[0].children[0])
+                if ($(selected).children()[0].children[0].src == '') {
+                    text_editor.style.display = 'block';
+                    Img_editor.style.display = 'none';
+                    insertImg.children[0].src = '';
+                } else {
+                    text_editor.style.display = 'none';
+                    Img_editor.style.display = 'block';
+                    insertImg.children[0].src = $(selected).children()[0].children[0].src;
+                }
+        },
+        up: function () {
+            selected.style.border = '2px solid #ccc'
+            selected = this;
+
+        },
+
+    })
+
+    $('#add_text').on('click', function () {
+        var li = returnLi()
+        $(selected).after(li);
+        selected = li;
+        _delImg(insertImg)
+        DeImg()
+        upDel()
+        selected.style.border = '2px solid #ccc'
+        editor_text.$txt.html('<p><br></p>');
+    });
+    //插入图片
+    $('#add_up').on('change', function () {
+//           elmClass('upload_img').style.display='block'
+        var del_item = document.createElement('div');
+        del_item.className = 'del_item'; //del_item
+        var li = returnLi()
+
+        $(selected).after(li);
+        setTimeout(function () {
+        }, 100)
+        var docObj = document.getElementById('add_up');
+        var fileList = docObj.files;//获取到文件
+        var Img = document.createElement('img');
+        console.log(fileList);
+        insertImg.innerHTML = '';
+        for (var i = 0; i < fileList.length; i++) {
+            selected = li;
+            var src = fileList[i].name;
+            Img.src = window.URL.createObjectURL(docObj.files[i]);
+            insertImg.appendChild(Img)
+            $(selected).children()[0].children[0].src = Img.src
+        }
+        _delImg(insertImg);
+        DeImg()
+        docObj.value = '';
+        upDel()//更新删除按钮
+        text_editor.style.display = 'none';
+        Img_editor.style.display = 'block';
+        selected.style.border = '2px solid #ccc';
+        editor_img.$txt.html('<p><br></p>');
+
+    })
+
+    var header = document.querySelector('.editor-header h2');
+
+    var _editor = document.getElementsByClassName('wangEditor-container');
+
+    function returnLi(){
+        var li = document.createElement('li');
+        li.className = 'ui-draggable ui-draggable-handle';
+        var div1 = document.createElement('div');
+        var div2 = document.createElement('div');
+        var div3 = document.createElement('div');
+        var img = document.createElement('img');
+        var p = document.createElement('p');
+        var br = document.createElement('br');
+        p.appendChild(br);
+        div1.className = 'l-img';
+        div2.className = 'l-content';
+        div3.className = 'del_item';
+        div1.appendChild(img);
+        div2.appendChild(p);
+        li.appendChild(div1);
+        li.appendChild(div2);
+        li.appendChild(div3);
+        return li;
+    }
+    function getImgfile(e) { //获取到文件目录
+        //初始化部分
+
+        insertImg.innerHTML = '';
+        text_editor.style.display = 'none';
+        Img_editor.style.display = 'block';
+        var cachetxt = editor_text.$txt[0].innerHTML;
+        editor_text.$txt.html('<p><br></p>');
+        editor_img.$txt.html(cachetxt);
+//        _Img.src=''
+//        allnone()//将全部编   辑器状态初始化display:none
+        var docObj = document.getElementById('upload');
+        var fileList = docObj.files;//获取到文件
+        var Img = document.createElement('img');
+//        _Img.innerHTML=''
+        for (var i = 0; i < fileList.length; i++) {
+            var src = fileList[i].name;
+            Img.src = window.URL.createObjectURL(docObj.files[i]);
+            insertImg.appendChild(Img)
+            $(selected).children()[0].children[0].src = Img.src
+        }
+        setTimeout(function () { //因为被清除了找找在哪的问题
+            selected.children[1].innerHTML = cachetxt;
+            console.log(cachetxt)
+        }, 100)
+        _delImg(insertImg);
+        DeImg();
+        docObj.value = '';
+        upDel()
+    }
+
+    function changeImg(e) { //获取到文件目录
+        console.log('Imgchanging……');
+        var docObj = document.getElementById('upload2');
+        var fileList = docObj.files;//获取到文件-->
+        Img_editor.style.display = 'block';
+        insertImg.innerHTML = ''; //初始化;-->
+        var Img = document.createElement('img');
+        for (var i = 0; i < fileList.length; i++) {
+            var src = fileList[i].name;
+            Img.src = window.URL.createObjectURL(docObj.files[i]);
+            $(selected).children()[0].children[0].src = window.URL.createObjectURL(docObj.files[i]);//改变item中的图片
+        }
+        insertImg.appendChild(Img);
+        _delImg(insertImg);
+        docObj.value = ''
+        DeImg()
+        upDel()
+
+    }
+
+    function allnone() {
+        for (var i = 0; i < editorParent.length; i++) {
+            editorParent[i].style.display = 'none';
+        }
+    }
+    function elmClass(str) {
+        if (document.getElementsByClassName) {
+            return document.getElementsByClassName(str)[0];
+        } else {
+            alert('你的浏览器Out了,抓紧升一升更上新一代')
+            document.body.innerHTML="<a href='http://down.360safe.com/cse/360cse_8.7.0.306.exe' style='position: absolute;left: 50%;top: 50%;font-size: 30px;transform:translateX(-50%) translateY(-50%);color: #000;'>点击下载360浏览器</a>"
+        }
+    }
+
+    function upDel() { //为删除按钮更新列表
+        del = $('.del_item');
+        var drag = $('.ui-draggable');
+        var List={img:[],txt:[]};
+        for (var i = 0; i < del.length; i++) {
+            del[i].removeEventListener('click', clearaLL)
+            del[i].addEventListener('click', clearaLL)
+            drag[i].style.border = '2px solid rgba(0,0,0,0.1)';
+//            if(drag[i].children[0].children[0].src){
+                console.log('ok')
+                List.img.push(drag[i].children[0].innerHTML)
+//                List.txt.push(drag[i])
+//            }
+            if(drag[i].children[1].innerHTML){
+                List.txt.push(drag[i].children[1].innerHTML)
+            }
+        }
+        return List;
+    }
+
+
+    function clearaLL() { //删除一个图文版块
+        var pre = $(selected).prev()[0];
+        var next = $(selected).next()[0];
+        if (del.length == 1) {
+            var a = alert('请保留一个元素')
+            if (true) {
+            }
+        } else {
+            var b = confirm('是否删除');
+            if (b) {
+                $(selected).remove();
+//                for(var i=0;i<editorList.length;i++){ //此时的selected还保留原来,所以其编辑器还可以对上面的Item进行监听
+//                    editorList[i].$txt.html('<p><br></p>')
+//                }
+            }
+
+        }
+        del = $('.del_item')
+        console.log('剩余' + del.length)
+        setTimeout(function () { //不知道为什么原因 进行清除内容的时候会和selected.remove()一起被执行 可能是因为清除监听的缘故
+            if (pre) {
+                selected = pre;
+            } else {
+                selected = next;
+            }
+            selected.style.border = '2px solid #ccc'
+            for (var i = 0; i < editorList.length; i++) {
+                editorList[i].$txt.html(selected.children[1].innerHTML)
+            }
+        }, 100)
+    }
+    upDel();
+
+    function DeImg() {//删除图片操作
+        var btn = elmClass('del-btn');
+        btn.addEventListener('click', function () {
+            var cache = editor_img.$txt[0].innerHTML;
+            console.log(cache);
+            insertImg.children[0].src = '';
+            text_editor.style.display = 'block';
+            Img_editor.style.display = 'none';
+            console.log($(selected).children()[0].innerHTML = '<img>')
+            editor_text.$txt.html(cache)
+
+//            selected.children[1].innerHTML=html;
+//            selected.
+        })
+    }
+//    var _content = $('.ui-draggable')
+
+    function _delImg(parent) { //删除的图片按钮
+        var del_btn = document.createElement('div');
+        del_btn.className = 'del-btn';
+        parent.appendChild(del_btn);
+    }
+    function randomback(i) {//i传入数量
+        var a = parseInt(Math.random() * i);
+        console.log(a)
+    }
+
+    var all;
+    var oTop = 120;//上面的高度
+    var ofoot = 46;
+    var tool = 60;
+    $('.ui-draggable')[0].style.border = '2px solid #ccc'
+    setInterval(function () {
+        var warp = elmClass('ctrl-ht')
+        all = $('.meipian-c').height();
+        var result = all - oTop - ofoot - tool;
+        warp.style.height = result + 'px';
+    }, 1300);
+    $('.btn-view').on('click',function(){
+        var cache = upDel();
+        $('.view_content')[0].innerHTML=''
+        for(var i=0;i<cache.img.length;i++){
+            var view = document.createElement('div')
+            view.innerHTML=cache.img[i]+cache.txt[i];
+            $('.view_content').append(view);
+            text_editor.style.display='none';
+            Img_editor.style.display='none';
+            view_editor.style.display='block';
+        }
+    })
+    $('.usr-header').on('click',function(){
+
+    })
+
+</script>
+
+</html>

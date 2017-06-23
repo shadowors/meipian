@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>详情页</title>
+    <link rel="stylesheet" type="text/css" href="css/cssreset.css">
+    <link rel="stylesheet" type="text/css" href="css/head.css">
+    <link rel="stylesheet" type="text/css" href="css/view.css">
+    <link rel="stylesheet" type="text/css" href="css/detail.css">
+    <link rel="stylesheet" type="text/css" href="css/css.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="g-head">
+    <ul class="nav">
+        <li><a href="##">回到首页</a></li>
+        <li><a href="##">发现</a></li>
+        <!--暂不考虑-->
+        <!--<li style="display: none;font-family: cursive;float: right;"><a href="">好文章的聚集地</a></li>-->
+    </ul>
+</div>
+<div class="meipian-warp">
+    <div class="view-head">
+        <h1 id="view_title">我的美篇</h1>
+    </div>
+    <!--显示时间信息-->
+    <div class="view-meta">
+        <div class="info clearfix">
+            <span>2017-04-01 14:49</span>
+            <span class="user">
+                <a href="www.meipian.cn/c/100001">小美</a>
+            </span>
+            <span>阅读0</span>
+        </div>
+    </div>
+    <!--内容开始-->
+    <div class="view_content">
+        <div class="section"><p style="text-align: center;"><font color="#ff8a00">免烫的溪水</font></p>
+            <p style="text-align: center;"><br></p>
+            <img src="http://static2.ivwen.com/user/100001/c78d0e6b6c1000015eb11e60166c1b2e.jpg-cover2">
+        </div>
+        <div class="section">
+            <p style="text-align: center; ">雄壮の搭讪</p>
+            <p><br></p>
+            <img src="http://static2.ivwen.com/user/100001/c78d0e6b6c1000015eb11e60166c1b2e.jpg-cover2">
+        </div>
+        <div class="section">
+            <p style="text-align: center; ">优雅の海坛</p>
+            <p><br></p>
+            <img src="http://static2.ivwen.com/user/100001/c78d0e6b6c1000015eb11e60166c1b2e.jpg-cover2">
+        </div>
+    </div>
+    <!--赞的区域-->
+    <div class="view-tools">
+        <div class="favo-btn">
+            <em class="favo-ico"></em>
+            <em class="r-txt">收藏</em>
+        </div>
+    </div>
+   <!--作者的信息-->
+    <div class="view_auther">
+        <div class="auther">
+            <a href="">
+                <div class="autherImg fl clearfix">
+                    <img src="http://static2.ivwen.com/users/10009/98e610de55014cafb2775bdfc5cdd167.jpg"
+                         style="width: 54px;height: 54px;" title="作者" alt="作者">
+                </div>
+                <div class="autherMsg">
+                    <p class="autherName"><span>作者:</span><span id="name">小美</span></p>
+                    <p class="autherSigna"><span id="Signa">即使生活再艰苛，也不要忘记你有一颗高贵的心</span></p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!--评论区-->
+    <div class="view_Comments">
+        <div class="Comm-title clearfix">
+            <i class="color-bg fl"></i>
+            <h4 class="fl">最新评论</h4>
+        </div>
+        <div class="Comm-list">
+            <div class="user-item clearfix">
+                <div class="itemImg fl">
+                    <a href="">
+                        <img src="http://static2.ivwen.com/users/859678/5bba93b6209348059b7bb15882ae89dd.jpg" title="评论区用户" alt="评论区用户">
+                    </a>
+                </div>
+                <div class="itemMsg">
+                    <div class="user">
+                        <span class="userName">小兵</span>
+                        <span class="date fl-r">刚刚</span>
+                    </div>
+                    <div class="Msg"><p>我大声道撒的</p></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!--发表评论-->
+    <div class="doc-comm">
+        <div class="comm-parent">
+                <input class="fl clearfix" placeholder="写下您的评论">
+                <div id="send">发送评论</div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+<script>
+
+    var parent =elmClass('Comm-list');
+
+    function elmClass(cls){
+        return document.getElementsByClassName(cls)[0];
+    }
+    var status = false;
+    var favo_btn = elmClass('favo-ico');
+    favo_btn.addEventListener('click',function(){
+        if(status=='false'){
+            this.classList.add('on')
+            status=true;
+        }else{
+            this.classList.remove('on')
+            status=false;
+        }
+    })
+</script>
+</html>

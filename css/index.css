@@ -1,0 +1,221 @@
+/*cssreset*/
+body{
+}
+/*start*/
+.u-name {
+    font-style: normal;
+    position: relative;
+    line-height: 25px;
+    margin-left: 5px;
+    color: #aaaaaa;
+}
+.row-main {
+    width: 610px;
+    height: 100%;
+}
+.row-main::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
+}
+
+.row-main::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f5f5f5
+}
+
+.row-main::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+.item {
+    margin-bottom: 24px;
+    position: relative;
+    width: 600px;
+    height: 150px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    user-select:none;
+}
+
+.item .bg {
+    display: block;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    height: 100%;
+    text-decoration: none;
+    color: #000;
+    overflow: hidden;
+}
+
+.item .bg h3 {
+    font-size: 18px;
+}
+
+.item .head {
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+}
+.item .bg{
+    transition:background 2s;
+}
+/*.item:hover .bg{*/
+/*background-position: 0;*/
+/*}*/
+
+/*info*/
+.info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    background: #FFFFFF;
+}
+
+.i-user {
+    padding-top: 2px;
+    overflow: hidden;
+    line-height: 20px;
+}
+
+.i-user .fl-r {
+    margin-right: 30px;
+}
+
+.i-user img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+.viewer{
+    position: relative;
+    display: block;
+    padding-left:28px;
+}
+.viewer:before {
+    position: absolute;
+    left:0;
+    top:0;
+    content: '';
+    display: inline-block;
+    width:25px;
+    height:25px;
+    background: url("../images/view.svg");
+}
+
+.warp{
+    position: absolute;
+    min-height:512px;
+    width:1024px;
+    top:70px;
+    left:0;
+    right:0;
+    bottom:40px;
+    margin:0 auto;
+    z-index:0;
+}
+
+.right-user{
+    position: absolute;
+    top:0;
+    right:0;
+    float: right;
+}
+
+
+/*用户右边*/
+.right-user{
+    width:300px;
+    border:1px solid #ccc;
+    border-radius:12px;
+    overflow: hidden;
+}
+.user-head{
+    padding-top:25px;
+    padding-left:20px;
+    border-bottom:1px solid #ccc;
+}
+.head-name{
+    margin-left:5px;
+}
+.head-img img{
+    border-radius:50%;
+    overflow: hidden;
+}
+.user-works{
+    height:600px;
+}
+.usr-foot{
+    position: relative;
+    text-align: center;
+    left:0;
+    right:0;
+    bottom:0;
+    height:45px;
+    background: #288ad8;
+}
+.btn{
+    cursor: pointer;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform:translateX(-50%) translateY(-50%);
+    width:100px;
+    height:32px;
+    line-height:32px;
+    border-radius:8px;
+    color: #288ad8;
+    background: floralwhite;
+
+}
+.item-warp{
+    height:100%;
+    overflow: auto;
+}
+/*自己的文章*/
+.work-item{
+    width:283px;
+    height:110px;
+    background: #ccc;
+    margin:20px auto;
+    border:2px solid rgb(255, 255, 255);
+    border-radius:12px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.work-item a{
+    display: block;
+    width:100%;
+    height:100%;
+    border-radius:12px;
+    box-sizing:content-box;
+    background-position:50%;
+}
+.work-item .head{
+    font-size:15px;
+    padding-left:5px;
+    height:20px;
+    line-height: 20px;
+    color: #fff;
+
+}
+.item-warp::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
+}
+
+.item-warp::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f5f5f5
+}
+
+.item-warp::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
